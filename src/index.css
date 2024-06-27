@@ -12,6 +12,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 img {
   display: block;
   max-width: 100%;
