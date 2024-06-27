@@ -1,8 +1,6 @@
-.item {
+.contact_list {
   display: flex;
+  gap: 16px;
   flex-wrap: wrap;
-  justify-content: center;
-
-  gap: 20px;
-  padding: 0;
+  justify-content: flex-start;
 }

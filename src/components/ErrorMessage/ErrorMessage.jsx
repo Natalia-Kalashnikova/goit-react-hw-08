@@ -1,11 +1,10 @@
-import css from '../ErrorMessage/ErrorMessage.module.css';
+import css from './ErrorMessage.module.css';
 
-
-const ErrorMessage = () => {
-    return (
+const ErrorMessage=()=>{
+  return (
     <div>
-      <p className={css.error}>
-        Ooops...😭 Something is wrong, please, reload the page.
+      <p className={css.network_mistake}>
+        There is an error! Please try again!
       </p>
     </div>
   );

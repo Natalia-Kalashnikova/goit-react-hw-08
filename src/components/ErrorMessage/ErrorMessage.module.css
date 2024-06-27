@@ -1,7 +1,5 @@
-.error {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding-top: 20px;
+.network_mistake {
+  color: red;
+  font-size: 20px;
+  text-align: center;
 }
