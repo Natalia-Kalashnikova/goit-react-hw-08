@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import toast from 'react-hot-toast';
+
 import { useId } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -9,14 +10,15 @@ import css from '../ContactForm/ContactForm.module.css';
 
 
 const ContactSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+name: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
   number: Yup.string()
-    .min(3, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
+    .matches(/^[0-9()+\-]+$/, "Phone number is not valid ")
+    .min(6, "Too Short!")
+    .max(18, "Too Long!")
+    .required("Required"),
 });
 
 
@@ -31,7 +33,7 @@ const ContactForm =()=> {
         toast.success('Successfully added!');
       })
       .catch(() => {
-        toast.error("This didn't work.");
+        toast.error("Failed to add. Please try again.");
       });
 
     actions.resetForm();
@@ -47,34 +49,37 @@ const ContactForm =()=> {
       validationSchema={ContactSchema}
     >
       <Form className={css.form}>
-        <div className={css.formContainer}>
-          <label htmlFor={`${fieldId}-name`}>Name</label>
-          <Field
-            className={css.form_field}
-            type="text"
-            name="name"
-            id={`${fieldId}-name`}
-          />
-          <ErrorMessage name="name" component="span" />
-        </div>
-        <div className={css.formContainer}>
-          <label htmlFor={`${fieldId}-number`}>Number</label>
-          <Field
-            className={css.form_field}
-            type="tel"
-            name="number"
-            id={`${fieldId}-number`}
-          />
-          <ErrorMessage name="number" component="span" />
-        </div>
-        <button className={css.addCntBtn} type="submit">
-          Add contact
-        </button>
-      </Form>
+          <div className={css.formGroup}>
+            <label htmlFor={`${fieldId}-name`}>Name</label>
+            <Field
+              className={css.input}
+              type="text"
+              name="name"
+              id={`${fieldId}-name`}
+            />
+            <ErrorMessage className={css.error} name="name" component="span" />
+          </div>
+          <div className={css.formGroup}>
+            <label htmlFor={`${fieldId}-number`}>Number</label>
+            <Field
+              className={css.input}
+              type="tel"
+              name="number"
+              id={`${fieldId}-number`}
+            />
+            <ErrorMessage
+              className={css.error}
+              name="number"
+              component="span"
+            />
+          </div>
+          <button className={css.btn} type="submit">
+            Add contact
+          </button>
+        </Form>
     </Formik>
   );
 }
 
 
 export default ContactForm;
-

@@ -52,7 +52,7 @@ const EditForm=({ contact: { id, name, number }, onClose })=> {
         <div className={css.formContainer}>
           <label htmlFor={`${fieldId}-name`}>Name</label>
           <Field
-            className={css.form_field}
+            className={css.input}
             type="text"
             name="name"
             id={`${fieldId}-name`}
@@ -62,7 +62,7 @@ const EditForm=({ contact: { id, name, number }, onClose })=> {
         <div className={css.formContainer}>
           <label htmlFor={`${fieldId}-number`}>Number</label>
           <Field
-            className={css.form_field}
+            className={css.input}
             type="tel"
             name="number"
             id={`${fieldId}-number`}
@@ -70,10 +70,10 @@ const EditForm=({ contact: { id, name, number }, onClose })=> {
           <ErrorMessage name="number" component="span" />
         </div>
         <div className={css.button_container}>
-          <button className={css.addCntBtn} type="submit">
+          <button className={css.editBtn} type="submit">
             Save
           </button>
-          <button className={css.addCntBtn} type="button" onClick={onClose}>
+          <button className={css.editBtn} type="button" onClick={onClose}>
             Cancel
           </button>
         </div>

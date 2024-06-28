@@ -10,9 +10,9 @@ const ContactList=({ onEdit })=> {
 
   return (
     <>
-      <ul className={css.contact_list}>
+      <ul className={css.item}>
         {contacts.map(contact => (
-          <li key={contact.id}>
+          <li className={css.item} key={contact.id}>
             <Contact contact={contact} onEdit={onEdit} />
           </li>
         ))}

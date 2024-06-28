@@ -5,7 +5,7 @@ import css from './NotFoundPage.module.css';
 const NotFoundPage=()=> {
   return (
     <div className={css.container}>   
-      <p>Sorry, page is not found! Please go to
+      <p className={css.textNotFoundPage}>Sorry, page is not found! Please go to
         &nbsp;<Link to="/" className={css.link}>Home page</Link>
       </p>    
     </div>

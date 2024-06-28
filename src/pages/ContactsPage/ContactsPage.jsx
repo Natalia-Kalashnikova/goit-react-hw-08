@@ -9,13 +9,17 @@ import Loader from '../../components/Loader/Loader';
 import PageTitle from '../../components/PageTitle/PageTitle';
 import ConfirmModal from '../../components/ModalWindow/ConfirmModal';
 import EditForm from '../../components/EditForm/EditForm';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 import { fetchContacts } from '../../redux/contacts/operations';
+import { selectError, selectLoading } from '../../redux/contacts/selectors';
+import css from '../ContactsPage/ContactsPage.module.css'
 
 
 const ContactPage=()=> {
   const dispatch = useDispatch();
-  const isLoading = useSelector(state => state.contacts.loading);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
   const [isEditing, setIsEditing] = useState(false);
   const [currentContact, setCurrentContact] = useState(null);
 
@@ -34,20 +38,25 @@ const ContactPage=()=> {
   };
 
   return (
-    <div>
+    <div className={css.container}>
       <PageTitle>Your contacts</PageTitle>
       <Toaster position="top-center" reverseOrder={false} />
-      <SearchBox />
-
+      {error && <ErrorMessage />}
+      {loading && <Loader />}
+      {!error && !loading &&(
+        <>
       {isEditing ? (
         <EditForm contact={currentContact} onClose={handleCancelEdit} />
       ) : (
         <ContactForm />
       )}
-
-      {isLoading && <Loader />}
-      <ContactList onEdit={handleEdit} />
+      <SearchBox />     
+      <div className={css.contactListWrapper}>
+        <ContactList onEdit={handleEdit} />
+      </div>      
       <ConfirmModal />
+        </>
+      )}
     </div>
   );
 }

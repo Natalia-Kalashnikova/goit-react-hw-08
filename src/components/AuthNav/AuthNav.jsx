@@ -4,7 +4,7 @@ import css from './AuthNav.module.css';
 
 const AuthNav=() =>{
   return (
-    <div>
+    <div className={css.container}>
       <NavLink className={css.link} to="/register">
         Register
       </NavLink>
@@ -14,6 +14,7 @@ const AuthNav=() =>{
     </div>
   );
 }
+
 
 export default AuthNav;
 

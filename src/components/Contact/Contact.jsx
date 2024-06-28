@@ -1,10 +1,9 @@
 import { FaUser, FaPhone } from "react-icons/fa6";
 import { GrEdit } from "react-icons/gr";
 import { AiOutlineDelete } from "react-icons/ai";
-
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../redux/modal/slice';
 
+import { openModal } from '../../redux/modal/slice';
 import css from './Contact.module.css';
 
 
@@ -19,15 +18,9 @@ const Contact=({ contact, onEdit })=> {
 
   return (
     <div className={css.container}>
-      <div className={css.info_container}>
-        <span className={css.contact_line}>
-          <FaUser />
-          <p>{contact.name}</p>
-        </span>
-        <span className={css.contact_line}>
-          <FaPhone />
-          <p>{contact.number}</p>
-        </span>
+      <div className={css.text}>        
+          <p><FaUser className={css.icon} />&nbsp; {contact.name}</p>
+          <p><FaPhone className={css.icon} />&nbsp; {contact.number}</p>
       </div>
       <div className={css.button_container}>
         <button
@@ -47,6 +40,3 @@ const Contact=({ contact, onEdit })=> {
 
 
 export default Contact;
-
-
-

@@ -9,3 +9,22 @@
   flex-direction: column;
   margin-bottom: 16px;
 }
+
+.error {
+  color: red;
+  font-weight: 500;
+}
+
+.input {
+  padding: 5px 5px 5px 10px;
+}
+
+.btnRegister {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn {
+  width: 150px;
+}

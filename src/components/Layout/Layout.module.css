@@ -3,3 +3,9 @@
   margin: 0 auto;
   padding: 0 16px;
 }
+
+@media (prefers-color-scheme: dark) {
+  label {
+    color: #ffbf47;
+  }
+}
