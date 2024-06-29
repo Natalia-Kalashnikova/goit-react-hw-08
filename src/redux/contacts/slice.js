@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
+
 import {
   fetchContacts,
   addContact,
   deleteContact,
   updateContact,
 } from '../contacts/operations';
-import toast from 'react-hot-toast';
 
+import { logOut } from '../auth/operations';
 
 const handlePending = state => {
   state.error = null;
@@ -34,13 +36,15 @@ const contactsSlice = createSlice({
       .addCase(fetchContacts.pending, handlePending)
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.loading = false;        
+        state.loading = false;
+        state.error = null;
       })
       .addCase(fetchContacts.rejected, handleRejected)
       .addCase(addContact.pending, handlePending)
       .addCase(addContact.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        state.loading = false;       
+        state.loading = false;
+        state.error = null;
       })
       .addCase(addContact.rejected, handleRejected)
       .addCase(deleteContact.pending, handlePending)
@@ -49,7 +53,8 @@ const contactsSlice = createSlice({
           contact => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
-        state.loading = false;        
+        state.loading = false;
+        state.error = null;
       })
       .addCase(deleteContact.rejected, handleRejected)
       .addCase(updateContact.pending, handlePending)
@@ -62,7 +67,12 @@ const contactsSlice = createSlice({
           state.loading = false;         
         }
       })
-      .addCase(updateContact.rejected, handleRejected);
+      .addCase(updateContact.rejected, handleRejected)
+      .addCase(logOut.fulfilled, state => {
+        state.items = [];
+        state.error = null;
+        state.loading = false;
+    });
   },
 });
 
